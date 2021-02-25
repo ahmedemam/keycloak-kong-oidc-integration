@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/ahmedemam/Documents/spikes-repos/keycloak-kong-oidc-integration'
+make: Leaving directory '/home/ahmedemam/Documents/spikes-repos/keycloak-kong-oidc-integration'
+ 
+make: *** No targets.  Stop.
+ 

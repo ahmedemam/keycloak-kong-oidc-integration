@@ -1,0 +1,42 @@
+## * build docker image from stable docker containers service
+
+# FROM query.io/keycloak/keycloak:latest
+FROM jboss/keycloak:latest  
+
+WORKDIR /opt/jboss/
+
+USER root
+
+## * copy custom beyond solution keycloak theme (login page) to keycloak configuration 
+RUN mkdir -p /keycloak/themes/beyond-keycloak-theme
+# COPY ./beyond-keycloak-theme/. /keycloak/themes/beyond-keycloak-theme/
+
+## * add required environment variables
+## ? pass postgres db url to POSTGRES_ADDR, should change address to real server ip
+# ENV POSTGRES_ADDR http://127.0.0.1
+# DB_ADDR docker network or public ip 
+ENV DB_ADDR http://127.0.0.1
+ENV DB_VENDOR postgres
+ENV DB_PORT 5432
+ENV DB_DATABASE keycloak
+# DB_USER '' by default
+ENV DB_USER keycloak
+ENV DB_SCHEMA: public
+ENV DB_PASSWORD password
+
+ENV KEYCLOAK_USER admin
+ENV KEYCLOAK_PASSWORD admin
+ENV KEYCLOAK_USER admin
+ENV KEYCLOAK_PASSWORD admin
+ENV DB_VENDOR h2
+
+## * add a custom theme replace them with external env variables or path them explicitly
+ENV KEYCLOAK_WELCOME_THEME ''
+ENV KEYCLOAK_DEFAULT_THEME ''
+
+## * expose application port
+EXPOSE 8080
+EXPOSE 8443
+
+## * entry point
+USER jboss

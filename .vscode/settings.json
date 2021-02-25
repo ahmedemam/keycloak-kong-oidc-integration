@@ -1,0 +1,8 @@
+{
+    "makefile.extensionOutputFolder": "./.vscode",
+    "cSpell.words": [
+        "keycloak",
+        "password",
+        "postgres"
+    ]
+}
